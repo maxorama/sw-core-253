@@ -1,0 +1,8 @@
+{ 
+   "process_id": "1",
+    "ospf_params": [ "opaque-capability enable", "graceful-restart", "enable traffic-adjustment"],
+    "area_networks": [ "network 10.0.0.0 0.0.0.255", "network 10.50.69.64 0.0.0.3", "network 192.168.10.0 0.0.0.255", "network 192.168.20.0 0.0.0.255", "network 192.168.25.0 0.0.0.255", "network 192.168.30.0 0.0.0.255", "network 192.168.70.0 0.0.0.255" ],
+    "interface": "LoopBack0",
+    "loopback_params": [ "ip address {{ router_id }} 255.255.255.255", "ospf network-type broadcast", "ospf enable 1 area {{ area_id }}" ]
+}
+

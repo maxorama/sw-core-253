@@ -1,0 +1,53 @@
+{
+   "dhcp_relay_enable": 1,
+   "dhcp_services": [ "dhcp enable", "portal pass dns enable" ],
+   "dhcp_relay": {
+		  "vlans": [ 10, 20, 25, 50, 70 ],
+		  "relay": [ "dhcp select relay", "dhcp relay server-ip 192.168.10.1" ]
+	 	},
+   "vlans": [
+	  {
+	     "name": "Default",
+	     "vlan": 1,
+	     "vlanif_ip": "ip address 10.0.0.252 255.255.255.0"
+	  },
+	  { 
+	     "name": "Internet",
+	     "vlan": 10,
+	     "vlanif_ip": "ip address 192.168.10.253 255.255.255.0"
+	  },
+	  {
+	     "name": "Bukh",
+	     "vlan": 20,
+	     "vlanif_ip": "ip address 192.168.20.253 255.255.255.0"
+	  },
+	  {  
+	     "name": "Management",
+	     "vlan": 25,
+	     "vlanif_ip": "ip address 192.168.25.253 255.255.255.0"
+	  },
+	  {  
+	     "name": "Provider_Akado",
+	     "vlan": 30
+	  },
+	  {  
+	     "name": "Provider_MTS",
+	     "vlan": 35
+	  },
+	  {  
+	     "name": "Study",
+	     "vlan": 50,
+	     "vlanif_ip": "ip address 192.168.50.253 255.255.255.0"
+	  },
+	  { 
+	     "name": "MGTS",
+	     "vlan": 60
+	  },
+	  { 
+	     "name": "Voice",
+	     "vlan": 70,
+	     "vlanif_ip": "ip address 192.168.70.253 255.255.255.0"
+	  }
+	]
+}
+

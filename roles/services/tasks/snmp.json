@@ -1,0 +1,11 @@
+{ 
+   "snmp_enable": 1,
+   "snmp_params": [ 
+		  "snmp-agent",
+                  "snmp-agent community complexity-check disable",
+                  "snmp-agent sys-info location Russia",
+                  "snmp-agent sys-info version v1 v2c",
+                  "undo snmp-agent sys-info version v3"
+		]
+}
+

@@ -1,0 +1,8 @@
+[sw-core-253]
+192.168.10.253
+
+[sw-core-253:vars]
+ansible_ssh_user = <login>
+ansible_ssh_pass = <password>
+ansible_network_os = community.network.ce
+ansible_python_interpreter=/usr/bin/python3

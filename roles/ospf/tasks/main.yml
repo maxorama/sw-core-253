@@ -1,0 +1,42 @@
+---
+
+- set_fact:
+    ospf_list: "{{ lookup('template', 'ospf.json.j2', errors='strict') }}"
+  when: ansible_network_os == 'community.network.ce' and ospf_enable == 1
+
+- name: Setting up router-id
+  ce_config:
+    lines:
+      - "router id {{ router_id }}"
+  when: ansible_network_os == 'community.network.ce' and ospf_enable == 1
+
+- name: Setting up Loopback interface
+  ce_config:
+    lines:
+      - "{{ item }}"
+    parents:
+      - "interface {{ ospf_list.interface }}"
+  with_items:
+    - "{{ ospf_list.loopback_params }}"
+  when: ansible_network_os == 'community.network.ce' and ospf_enable == 1
+
+- name: Setting up OSPF parameters
+  ce_config:
+    lines:
+      - "{{ item }}"
+    parents:
+      - "ospf {{ ospf_list.process_id }} router-id {{ router_id }}"
+  with_items:
+    - "{{ ospf_list.ospf_params }}"
+  when: ansible_network_os == 'community.network.ce' and ospf_enable == 1
+
+- name: Setting up OSPF networks
+  ce_command:
+    commands: "{{ item }}"
+  loop:
+    - "system-view"
+    - "ospf {{ ospf_list.process_id }} router-id {{ router_id }}"
+    - "area {{ area_id }}"
+    - "{{ ospf_list.area_networks }}"
+  when: ansible_network_os == 'community.network.ce' and ospf_enable == 1
+

@@ -1,0 +1,12 @@
+---
+# Variables listed here are applicable to all host groups
+
+hostname: sw-core-253
+hostname_ip: 192.168.10.253
+
+vlan_enable: 		1
+port_switchport: 	1
+port_enable_sflow: 	1
+ospf_enable: 		1
+services_enable: 	1
+

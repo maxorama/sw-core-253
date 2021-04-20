@@ -1,0 +1,45 @@
+---
+
+- set_fact:
+    nested_list: "{{ lookup('file', './huawei.json') }}"
+  when: ansible_network_os == 'community.network.ce'
+
+- name: Setting up port description
+  ce_config:
+    lines:
+      - "{{ item.desc }}"
+    parents: "interface {{ nested_list.prefix }}/{{ item.port }}"
+  with_items:
+    - "{{ nested_list.ports }}"
+  when: ansible_network_os == 'community.network.ce' and item.desc is defined
+
+- name: Setting up port switchport
+  ce_config:
+    lines:
+      - "{{ item.1 }}"
+    parents: "interface {{ nested_list.prefix }}/{{ item.0.port }}"
+  with_subelements:
+    - "{{ nested_list.ports }}"
+    - switchport
+    - skip_missing: true
+  when: ansible_network_os == 'community.network.ce' and port_switchport == 1
+
+- name: Setting up sflow
+  ce_config:
+    lines:
+      - "{{ item.1 }}"
+    parents: "interface {{ nested_list.prefix }}/{{ item.0 }}"
+  with_nested:
+    - "{{ nested_list.sflow.ports }}"
+    - "{{ nested_list.sflow.params }}"
+  when: ansible_network_os == 'community.network.ce' and port_enable_sflow == 1
+
+- name: Disable port shutdown
+  ce_config:
+    lines:
+      - "undo shutdown"
+    parents: "interface {{ nested_list.prefix }}/{{ item.port }}"
+  with_items:
+    - "{{ nested_list.ports }}"
+  when: ansible_network_os == 'community.network.ce'
+

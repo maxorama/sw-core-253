@@ -1,0 +1,12 @@
+---
+
+- name: Retrieve current configuration
+  cli_command:
+    command: 'dis current-config'
+  register: result
+  when: ansible_network_os == 'community.network.ce'
+
+- name: Show configuration
+  debug:
+    var: result.stdout_lines
+

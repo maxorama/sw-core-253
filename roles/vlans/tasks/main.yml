@@ -1,0 +1,45 @@
+---
+
+- set_fact:
+    vlans_list: "{{ lookup('template', './vlans.json', errors='strict') }}"
+  when: ansible_network_os == 'community.network.ce' and vlan_enable == 1
+
+- name: Adding vlans
+  ce_config:
+    lines:
+      - "name {{ item.name }}"
+    parents:
+      - "vlan {{ item.vlan }}"
+  with_items:
+    - "{{ vlans_list.vlans }}"
+  when: ansible_network_os == 'community.network.ce' and vlan_enable == 1
+
+- name: Adding interface vlans
+  ce_config:
+    lines:
+      - "{{ item.vlanif_ip }}"
+    parents:
+      - "interface Vlanif {{ item.vlan }}"
+  with_items:
+    - "{{ vlans_list.vlans }}"
+  when: ansible_network_os == 'community.network.ce' and vlan_enable == 1 and item.vlanif_ip is defined
+
+- name: Setting up dhcp services
+  ce_config:
+    lines:
+      - "{{ item }}"
+  with_items:
+    - "{{ vlans_list.dhcp_services }}"
+  when: ansible_network_os == 'community.network.ce' and vlans_list.dhcp_relay_enable == 1
+
+- name: Adding dhcp-relay ip address
+  ce_config:
+    lines:
+      - "{{ item.1 }}"
+    parents:
+      - "interface Vlanif {{ item.0 }}"
+  with_nested:
+    - "{{ vlans_list.dhcp_relay.vlans }}"
+    - "{{ vlans_list.dhcp_relay.relay }}"
+  when: ansible_network_os == 'community.network.ce' and vlans_list.dhcp_relay_enable == 1
+

@@ -1,0 +1,14 @@
+---
+
+- name: "display device"
+  cli_command:
+    command: 'display device'
+  register: data_device
+  when: ansible_network_os == 'community.network.ce'
+
+- name: "display version"
+  ce_command: 
+    commands: 'display version'
+  register: data_version
+  when: ansible_network_os == 'community.network.ce'
+

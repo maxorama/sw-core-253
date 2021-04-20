@@ -1,0 +1,141 @@
+{
+   "prefix": "XGigabitEthernet0/0",
+   "sflow": {
+		"ports": [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24 ],
+		"params": [ "sflow counter-sampling collector 1", "sflow counter-sampling interval 30", "sflow flow-sampling collector 1", "sflow flow-sampling rate 4000" ]
+		},
+   "ports": [
+		  {
+		    "desc": "description ovirt-01",
+		    "clear": "clear configuration interface 1",
+		    "port": "1",
+		    "switchport": ["port link-type trunk", "port trunk allow-pass vlan 10 20 25 30 35 50 60 70"]
+		  },
+		  {
+		    "desc": "description ovirt-02",
+		    "clear": "clear configuration interface 2",
+		    "port": "2",
+		    "switchport": ["port link-type trunk", "port trunk allow-pass vlan 10 20 25 30 35 50 60 70"]
+		  },
+		  {
+		    "desc": "description ovirt-03",
+		    "clear": "clear configuration interface 3",
+		    "port": "3",
+		    "switchport": ["port link-type trunk", "port trunk allow-pass vlan 10 20 25 30 35 50 60 70"]
+		  },
+		  {
+		    "desc": "description ovirt-04",
+		    "clear": "clear configuration interface 4",
+		    "port": "4",
+		    "switchport": ["port link-type trunk", "port trunk allow-pass vlan 10 20 25 30 35 50 60 70"]
+		  },
+		  {
+		    "clear": "clear configuration interface 5",
+		    "port": "5"
+		  },
+		  {
+		    "clear": "clear configuration interface 6",
+		    "port": "6"
+		  },
+		  {
+		    "desc": "description iSCSI Storage V7000",
+		    "clear": "clear configuration interface 7",
+		    "port": "7",
+		    "switchport": ["port link-type access", "port default vlan 10"]
+		  },
+		  {
+		    "desc": "description iSCSI Storage V7000",
+		    "clear": "clear configuration interface 8",
+		    "port": "8",
+		    "switchport": ["port link-type access", "port default vlan 10"]
+		  },
+		  {
+		    "desc": "description Firewall-ISP",
+		    "clear": "clear configuration interface 9",
+		    "port": "9",
+		    "switchport": ["port link-type trunk", "port trunk allow-pass vlan 30 35"]
+		  },
+		  {
+		    "desc": "description Firewall-pfSense",
+		    "clear": "clear configuration interface 10",
+		    "port": "10",
+		    "switchport": ["port link-type trunk", "port trunk allow-pass vlan 10 25 50 60 70"]
+		  },
+		  {
+		    "clear": "clear configuration interface 11",
+		    "port": "11"
+		  },
+		  { 
+		    "desc": "description Ftp",
+		    "clear": "clear configuration interface 12",
+		    "port": "12",
+		    "switchport": ["port link-type access", "port default vlan 10"]
+		  },
+		  { 
+		    "desc": "description ISP_Akado",
+		    "clear": "clear configuration interface 13",
+		    "port": "13",
+		    "switchport": ["port link-type access", "port default vlan 30"]
+		  },
+		  { 
+		    "desc": "description Ftp",
+		    "clear": "clear configuration interface 14",
+		    "port": "14",
+		    "switchport": ["port link-type access", "port default vlan 30"]
+		  },
+		  {
+		    "desc": "description Firewall-ISP-DC",
+		    "clear": "clear configuration interface 15",
+		    "port": "15",
+		    "switchport": ["port link-type trunk", "port trunk allow-pass vlan 30 35"]
+		  },
+		  {
+		    "clear": "clear configuration interface 16",
+		    "port": "16"
+		  },
+		  {
+		    "desc": "description ISP_MTS",
+		    "clear": "clear configuration interface 17",
+		    "port": "17",
+		    "switchport": ["port link-type access", "port default vlan 35"]
+		  },
+		  { 
+		    "desc": "description sw-248",
+		    "clear": "clear configuration interface 18",
+		    "port": "18",
+		    "switchport": ["port link-type trunk", "port trunk allow-pass vlan 10 20 25"]
+		  },
+		  {
+		    "clear": "clear configuration interface 19",
+		    "port": "19"
+		  },
+		  {
+		    "clear": "clear configuration interface 20",
+		    "port": "20"
+		  },
+		  { 
+		    "desc": "description sw-252",
+		    "clear": "clear configuration interface 21",
+		    "port": "21",
+		    "switchport": ["port link-type trunk", "port trunk allow-pass vlan 10 20 25"]
+		  },
+		  { 
+		    "desc": "description sw-251",
+		    "clear": "clear configuration interface 22",
+		    "port": "22",
+		    "switchport": ["port link-type trunk", "port trunk allow-pass vlan 10 20 25 50"]
+		  },
+		  { 
+		    "desc": "description sw-250",
+		    "clear": "clear configuration interface 23",
+		    "port": "23",
+		    "switchport": ["port link-type trunk", "port trunk allow-pass vlan 10 20 25 60 70"]
+		  },
+		  { 
+		    "desc": "description sw-249",
+		    "clear": "clear configuration interface 24",
+		    "port": "24",
+		    "switchport": ["port link-type trunk", "port trunk allow-pass vlan 25"]
+		  }
+		]
+}

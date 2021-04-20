@@ -1,0 +1,29 @@
+---
+
+- name: Configure Huawei s6720 to be the router
+  hosts: sw-core-253
+  connection: network_cli
+  gather_facts: no
+  become: no
+
+  roles:
+    - display_info
+    - show_config
+    - ports
+    - vlans
+    - ospf
+    - services
+
+  tasks:
+    - name: Save configuration
+      cli_command:
+        command: "save"
+        check_all: true
+        prompt: The current configuration will be written to flash:/vrpcfg.zip.
+        prompt: Are you sure to continue\?\[Y\/N\]
+        answer: y
+      register: result
+
+    - debug:
+        var: result.stdout_lines
+

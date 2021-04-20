@@ -1,0 +1,11 @@
+{ 
+   "services": [ 
+		  "vcmp role server",
+		  "l2-topology detect enable",
+                  "route low-priority enable",
+                  "mac-address update arp",
+                  "arp topology-change disable",
+                  "sftp server enable"
+		]
+}
+

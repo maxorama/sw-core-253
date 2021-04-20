@@ -1,0 +1,8 @@
+---
+
+ssh_user: admin
+
+sflow_ip: 192.168.10.14
+sflow_port: 9996
+sflow_desc: srv-mng
+

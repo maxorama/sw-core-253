@@ -1,0 +1,16 @@
+{ 
+   "telnet_enable": 1,
+   "telnet_server": "telnet server enable",
+   "telnet_params": [
+                  {
+                     "cmd": "user-interface vty 0 3",
+		     "params": ["authentication-mode aaa", "user privilege level 3", "idle-timeout 30 0"]
+
+                  },
+                  {
+                     "cmd": "user-interface vty 4",
+   		     "params": ["authentication-mode aaa", "user privilege level 3", "idle-timeout 0 30"]
+                  }
+		]
+}
+

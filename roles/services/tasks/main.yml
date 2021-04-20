@@ -1,0 +1,72 @@
+---
+
+- set_fact:
+    services_list: "{{ lookup('file', 'services.json', errors='strict') }}"
+  when: ansible_network_os == 'community.network.ce' and services_enable == 1
+
+- name: Setting up services
+  ce_config:
+    lines:
+      - "{{ item }}"
+  with_items:
+    - "{{ services_list.services }}"
+  when: ansible_network_os == 'community.network.ce' and services_enable == 1
+
+- set_fact:
+    snmp: "{{ lookup('file', 'snmp.json', errors='strict') }}"
+  when: ansible_network_os == 'community.network.ce'
+
+- name: Setting up snmp
+  ce_config:
+    lines:
+      - "{{ item }}"
+  with_items:
+    - "{{ snmp.snmp_params }}"
+  when: ansible_network_os == 'community.network.ce' and snmp.snmp_enable == 1
+
+- set_fact:
+    ssh: "{{ lookup('template', 'ssh.json.j2', errors='strict') }}"
+  when: ansible_network_os == 'community.network.ce'
+
+- name: Setting up ssh
+  ce_config:
+    lines:
+      - "{{ item }}"
+  with_items:
+    - "{{ ssh.ssh_params }}"
+  when: ansible_network_os == 'community.network.ce' and ssh.ssh_enable == 1
+
+- set_fact:
+    telnet: "{{ lookup('template', 'telnet.json.j2', errors='strict') }}"
+  when: ansible_network_os == 'community.network.ce'
+
+- name: Setting up telnet server
+  ce_config:
+    lines:
+      - "{{ telnet.telnet_server }}"
+  when: ansible_network_os == 'community.network.ce' and telnet.telnet_enable == 1
+
+- name: Setting up telnet
+  ce_config:
+    lines:
+      - "{{ item.1 }}"
+    parents:
+      - "{{ item.0.cmd }}"
+  with_subelements:
+    - "{{ telnet.telnet_params }}"
+    - params
+    - skip_missing: True
+  when: ansible_network_os == 'community.network.ce' and telnet.telnet_enable == 1
+
+- set_fact:
+    sflow: "{{ lookup('template', 'sflow.json.j2', errors='strict') }}"
+  when: ansible_network_os == 'community.network.ce'
+
+- name: Setting up sflow
+  ce_config:
+    lines:
+      - "{{ item }}"
+  with_items:
+    - "{{ sflow.sflow_params }}"
+  when: ansible_network_os == 'community.network.ce' and sflow.sflow_enable == 1
+
