@@ -1,2 +1,4 @@
-# sw-core-253
+# Huawei switch configuration
+
 Base configuring Huawei s6720s
+
